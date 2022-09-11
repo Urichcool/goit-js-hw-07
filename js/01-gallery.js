@@ -23,11 +23,19 @@ const onGalleryLinkClick = (event) => {
     return;
   }
   const selectedImg = event.target.dataset.source;
-  console.log(selectedImg);
-  return selectedImg;
+  const instance = basicLightbox.create(
+    `<img
+    src = "${selectedImg}">`
+  );
+    instance.show();
+  galleryEl.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      instance.close();
+    }
+  });
   
 }
 galleryEl.addEventListener("click", onGalleryLinkClick);
 
 
-console.log(galleryItems);
+
